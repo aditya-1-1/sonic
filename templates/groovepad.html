@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groovepad</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            background-color: #121212;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+        }
+        h1 {
+            color: linear-gradient(to right, #6a00ff, #ff00ff);
+            font-size: 48px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        h1 span {
+            background: linear-gradient(to right, #6a00ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .pad-container {
+            display: grid;
+            border-radius: 20px;
+            grid-template-columns: repeat(6, 110px);
+            gap: 10px;
+        }
+        .pad {
+            width: 100px;
+            height: 100px;
+            background-color: #181818;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; 
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border: 2px solid transparent;
+            border-image: linear-gradient(#0000ff, #ff00ff) 2;
+            overflow: hidden;
+        }
+        .pad:active {
+            background-color: #242424;
+        }
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 3px dotted #FFF;
+            border-style: solid solid dotted dotted;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            box-sizing: border-box;
+            animation: none;
+        }
+        .loader.animate {
+            animation: rotation 2s linear infinite;
+        }
+        .loader::after {
+            content: '';  
+            box-sizing: border-box;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            border: 3px dotted #6a00ff;
+            border-style: solid solid dotted;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            animation: none;
+            transform-origin: center center;
+        }
+        .loader::after.animate {
+            animation: rotationBack 1s linear infinite
+        }
+        .beat-name {
+            color: #FFFFFF; 
+            font-size: 14px; 
+            text-align: center;
+            margin-top: 5px; 
+        }
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        } 
+        @keyframes rotationBack {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(-360deg);
+            }
+        } 
+    </style>
+</head>
+<body>
+    <h1><span>GroovePad</span></h1>
+    <div class="pad-container">
+        <div class="pad" data-sound="static/audio/beat1.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Beat</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat2.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Beat</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat3.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Synth</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat4.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Choir</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat5.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Whistle</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat6.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Mallets</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat7.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Beat</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat8.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Beat</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Keys</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Vox</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Pluck</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Choir</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Mallets</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Bass</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Rock</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Strike</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">FX</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Phonk</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Burn</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Beat</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Vox</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Keys</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Whistle</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Synth</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Choir</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Mallet</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Vox</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Fx</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Blaze</span>
+        </div>
+        <div class="pad" data-sound="static/audio/Beat9.mp3">
+            <span class="loader"></span>
+            <span class="beat-name">Rock</span>
+        </div>
+    </div>
+
+    <script>
+        const pads = document.querySelectorAll('.pad');
+
+        pads.forEach(pad => {
+            let audio = null; 
+            const loader = pad.querySelector('.loader');
+
+            pad.addEventListener('click', () => {
+                const soundFile = pad.getAttribute('data-sound');
+
+                if (audio && !audio.paused) {
+                    audio.pause();
+                    audio.currentTime = 0; 
+                    loader.classList.remove('animate'); 
+                    audio = null; 
+                } else {
+                    audio = new Audio(soundFile);
+                    audio.play();
+                    loader.classList.add('animate'); 
+                }
+            });
+        });
+    </script>
+</body>
+</html>

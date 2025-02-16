@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Frijole&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chela+One&family=Frijole&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='static\css\home.css') }}">
+    <link rel="stylesheet" href="static\css\home.css">
+    <link rel="icon" type="image/png" href="static\images\logo.png" >
+
+    <title>Sonic Player</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-nav" style="background: black;">
+            <div class="logo">
+                <a href=""><img src="static\images\newlogo.jpg" alt=""></a>
+            </div>
+        </div>
+        <div class="sidebar-nav">
+            <ul>
+                <li><a href="{{ url_for('home') }}">
+                    <span><i class="fa-solid fa-house"></i></span>
+                    <span>&nbsp;&nbsp; Home</span>
+                </a></li>
+                <li><a href="{{ url_for('library') }}">
+                    <span><i class="fa-brands fa-medium"></i></span>
+                    <span> &nbsp;&nbsp; Your Library</span>
+                </a></li>
+            </ul>
+        </div>
+        <div class="sidebar-nav">
+            <ul>
+                <li><a href="{{ url_for('moods') }}">
+                    <span><i class="fa-solid fa-ghost"></i></span>
+                    <span> &nbsp;&nbsp; Moods</span>
+                </a></li>
+                <li><a href="{{ url_for('groovepad') }}">
+                    <span><i class="fa-solid fa-music"></i></span>
+                    <span>&nbsp;&nbsp; Groovepad</span>
+                </a></li>
+            </ul>
+        </div>
+
+        <div class="social-icons">
+            <a href="#">
+             <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#">
+             <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#">
+             <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+
+        <div class="privacy">
+            <ul>
+                <li>
+                    <p>Legal &nbsp;&nbsp; Safety & Privacy Centre &nbsp;&nbsp; Privacy policy</p>
+                </li>
+                <li>
+                    <p> Cookies &nbsp;&nbsp; About Ads &nbsp;&nbsp; Accessibilty</p>
+                </li>
+                <li>
+                    <p> Cookies</p>
+                </li>
+            </ul>
+        </div>
+        <div class="copy" style="color: rgb(167, 166, 166);">
+           <p> &nbsp; &nbsp;&nbsp;Copyright © 2024 APK (All rights reserved)</p>
+        </div>
+    </div>
+
+    <div class="main"> 
+        <div class="top-nav">
+            <div class="prev-btn">
+                <span><i class="fa-solid fa-bell"></i></span>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput"  placeholder="Search...">
+                <button type="submit"><i class="fa-solid fa-search"></i></button>
+            </div>
+            <div class="login-btn">
+                {% if 'username' in session %}
+                <div class="user-info">
+                        <span>{{ session['username'] }}</span>
+                        <img src="static/images/logo.png" alt="Profile Picture" class="profile-pic">
+                        <a href="{{ url_for('logout') }}"><button class="logout">Logout</button></a>
+                    </div>
+                    {% else %}
+                    <a href="{{ url_for('login') }}"><button class="sign-up">Sign-Up</button></a>
+                    <a href="{{ url_for('login') }}"><button class="login">Login</button></a>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="button-container" >
+                <button class="btn" style="background-color: rgb(32, 32, 32); color:rgb(32, 32, 32);">Button 1</button>
+                <button class="btn" style="background-color: rgb(32, 32, 32); color:rgb(32, 32, 32);">Button 1</button>
+                <button class="btn" style="background-color: rgb(32, 32, 32); color:rgb(32, 32, 32);">Button 1</button>
+            </div>
+            <div class="playlist">
+                <h2>Your Playlist</h2>
+                <div class="card" >
+                    <div id="trackList"></div>
+                    <!-- JavaScript will dynamically insert track items here -->
+                </div>
+            </div>
+            
+            
+            <div class="playlist">
+            <h2>Top Of The Month</h2>
+            <div class="card">
+                <div class="item">
+                    <img src="static\images\image copy.png" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>
+                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <h4>Arijit Singh</h4>
+                    <p>artist</p>
+                </div>
+                <div class="item">
+                    <img src="static\images\image copy 4.png" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>
+                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <h4>Justin Bieber</h4>
+                    <p>artist</p>
+                </div>
+                <div class="item">
+                    <img src="static\images\image copy 2.png" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>
+                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <h4>Hariharan</h4>
+                    <p>artist</p>
+                </div>
+                <div class="item">
+                    <img src="static\images\image copy 3.png" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>
+                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <h4>Alan Walker</h4>
+                    <p>artist</p>
+                </div>
+                <div class="item">
+                    <img src="static\images\image.png" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>
+                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <h4>Billie Eilish</h4>
+                    <p>artist</p>
+                </div>
+            </div>
+        </div>
+        <div class="playlist">
+            <h2>Popular Albums</h2>
+            <div class="card">
+                <div class="item">
+                    <img src="https://tse2.mm.bing.net/th?id=OIP.ejyQME9-36oMc9RKztpqyQHaEK&pid=Api&P=0&h=180" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>
+                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <h4>Glory</h4>
+                    <p>Yo Yo Honey Singh</p>
+                </div>
+                <div class="item">
+                    <img src="https://tse3.mm.bing.net/th?id=OIP.SYOJc1Ghu9wsLMDCorhFiQHaIg&pid=Api&P=0&h=180" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>
+                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <h4>Yeh Jawaani</h4>
+                    <p>Pritam</p>
+                </div>
+                <div class="item">
+                    <img src="https://tse1.mm.bing.net/th?id=OIP.XgSDVMJ1JwOe_0nOzNnkxwHaFj&pid=Api&P=0&h=180" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>
+                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <h4>Still Rolling</h4>
+                    <p>Shubh</p>
+                </div>
+                <div class="item">
+                    <img src="https://tse4.mm.bing.net/th?id=OIP.raJCZ85vDTelZDnG2LbH-wHaKX&pid=Api&P=0&h=180" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>
+                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <h4>Animal</h4>
+                    <p>Manan Bhardwaj,Vishal Mishra,Jaani</p>
+                </div>
+                <div class="item">
+                    <img src="https://tse2.mm.bing.net/th?id=OIP.IJyIxpjonzB2Xzv8d_HXGgHaM4&pid=Api&P=0&h=180" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>
+                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <h4>Ghost</h4>
+                    <p>Diljit Dosanjh</p>
+                </div>
+            </div>
+        </div>
+        <div class="playlist">
+            <h2>Bhakti Bhav</h2>
+            <div class="card">
+                <div class="item">
+                    <img src="https://tse1.mm.bing.net/th?id=OIP.NA1KoLAojR1eaF4lYH8x0wHaE7&pid=Api&P=0&h=180" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>
+                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <h4>Ekantik Vartalaap</h4>
+                    <p>Shrii hit Premanand Govind
+                        Sharan Ji Maharaj
+                    </p>
+                </div>
+                <div class="item">
+                    <img src="https://tse2.mm.bing.net/th?id=OIP.RcHKLQDWxhYbkFsvsfmEaQHaFj&pid=Api&P=0&h=180" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <h4>Srimad Bhagwat  Geeta</h4>
+                    <p>Hare Krishna Podcast</p>
+                </div>
+                <div class="item">
+                    <img src="https://tse3.mm.bing.net/th?id=OIP.m1D58vg8ysKpRTIS_z7ElgHaDt&pid=Api&P=0&h=180" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <h4>Shiv Puran</h4>
+                    <p>Anupama Dhunsoiya</p>
+                </div>
+                <div class="item">
+                    <img src="https://tse2.mm.bing.net/th?id=OIP.bIBVTtNn_5bsp7RY9BnmFwHaGL&pid=Api&P=0&h=180" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <h4>SHree Krishna Leela</h4>
+                    <p>Spotify Studios</p>
+                </div>
+                <div class="item">
+                    <img src="https://tse4.mm.bing.net/th?id=OIP.Hof0v1At2vDxsJQGc8Z1WgHaFj&pid=Api&P=0&h=180" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>
+                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <h4>Chanakya Neeti</h4>
+                    <p>Vishal S</p>
+                </div>
+            </div>
+        </div>
+        <div class="playlist">
+            <h2>Editors's Pick</h2>
+            <div class="card">
+                <div class="item">
+                    <img src="https://tse1.mm.bing.net/th?id=OIP.FqKec4Hh8jsEmlRVahyRHQHaHa&pid=Api&P=0&h=180" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>
+                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <p>Late night cool,& these soothing tunes. </p>
+                    
+                </div>
+                <div class="item">
+                    <img src="https://tse4.mm.bing.net/th?id=OIP.YGG5vvnsH4N-IikALY89DAHaDw&pid=Api&P=0&h=180" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>
+                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <p>Bollywood mesmerising ode to the mystical Sufi.</p>
+                </div>
+                <div class="item">
+                    <img src="https://tse4.mm.bing.net/th?id=OIP.ObJS2IpSOoUielTXDlGUlwHaD4&pid=Api&P=0&h=180" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>
+                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <p>soulful tunes for the heart in which you can lost.</p>
+                </div>
+                <div class="item">
+                    <img src="https://tse1.mm.bing.net/th?id=OIP.jxWG0o5RgSzwhbjUKXZ8IAHaKe&pid=Api&P=0&h=180" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>
+                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <p>it's ok to not be ok.</p>
+                </div>
+                <div class="item">
+                    <img src="https://diffusionart.co/wp-content/uploads/2023/04/Lofi-Music-Anime-Graphics-Wallpapers9.png" alt="">
+                    <div class="play-btn">
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </div>
+                    <div class="heart-btn">
+                        <span><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <p>Enhale and Exhale to the beats of Lofi.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-section">
+            <div class="footer">
+                <div class="footer-links">
+                    <div class="columns">
+                        <div>company</div>
+                        <ul class="col-links">
+                            <li><a href="">About</a></li>
+                            <li><a href="">Jobs</a></li>
+                            <li><a href="">For the Records</a></li>
+                        </ul>
+                    </div>
+                    <div class="columns">
+                        <div>Community</div>
+                        <ul class="col-links">
+                            <li><a href="">For Artists</a></li>
+                            <li><a href="">Developers</a></li>
+                            <li><a href="">Advertising</a></li>
+                            <li><a href="">Investors</a></li>
+                            <li><a href="">Vendors</a></li>
+                        </ul>
+                    </div>
+                    <div class="columns">
+                        <div>Useful Links</div>
+                        <ul class="col-links">
+                            <li><a href="">Support</a></li>
+                            <li><a href="">Free Mobile App</a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="playbar" id="playbar" style="display: none;">
+        <div class="playbar-content">
+            <img src="" alt="Now Playing" id="nowPlayingImage">
+            <div class="playbar-info">
+                <h4 id="nowPlayingTitle">Title</h4>
+                <p id="nowPlayingArtist">Artist</p>
+            </div>
+            <div class="controls">
+                <button id="prevButton"><i class="fa-solid fa-backward"></i></button>
+                <button id="playPauseButton"><i class="fa-solid fa-play"></i></button>
+                <button id="nextButton"><i class="fa-solid fa-forward"></i></button>
+                
+            </div>
+            <input type="range" id="musicTracker" value="0" min="0" max="100">
+        </div>
+    </div>
+
+    <script src="static\js\home.js"></script>
+
+</body>
+</html>
