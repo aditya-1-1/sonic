@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groovepad</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/groovepad.css') }}">
+</head>
+<body>
+    <h1><span>GroovePad</span></h1>
+    <div class="pad-container"></div>
+
+    <!-- Load the audio data -->
+    <script src="{{ url_for('static', filename='js/audioData.js') }}"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const padContainer = document.querySelector(".pad-container");
+
+            audioData.pads.forEach(padData => {
+                const pad = document.createElement("div");
+                pad.classList.add("pad");
+                pad.setAttribute("data-sound", padData.sound);
+
+                pad.innerHTML = `
+                    <span class="loader"></span>
+                    <span class="beat-name">${padData.name}</span>
+                `;
+
+                pad.addEventListener("click", () => {
+                    let audio = new Audio(padData.sound);
+                    audio.play();
+                });
+
+                padContainer.appendChild(pad);
+            });
+        });
+    </script>
+</body>
+</html>
