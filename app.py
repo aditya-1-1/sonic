@@ -116,10 +116,15 @@ def library():
 def moods():
     return render_template('moods.html')
 
-# Route for Groovepad (To Fix BuildError)
+# Route for Groovepad
 @app.route('/audio/groovepad')
 def groovepad():
     return render_template('groovepad.html')
+
+# Route to serve audio files
+@app.route('/static/audio/<path:filename>')
+def serve_audio(filename):
+    return app.send_static_file(f'audio/{filename}')
 
 
 # User Login

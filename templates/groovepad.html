@@ -3,38 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Groovepad</title>
+    <title>GroovePad Studio</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/groovepad.css') }}">
 </head>
 <body>
-    <h1><span>GroovePad</span></h1>
-    <div class="pad-container"></div>
+    <div class="app-container">
+        <header>
+            <h1><span>GroovePad Studio</span></h1>
+            <div class="global-controls">
+                <div class="control-group">
+                    <label for="master-volume">Master Volume</label>
+                    <input type="range" id="master-volume" min="0" max="100" value="80">
+                </div>
+                <div class="control-group">
+                    <label for="bpm">BPM</label>
+                    <input type="number" id="bpm" min="60" max="180" value="120">
+                </div>
+                <button id="stop-all" class="neon-button">Stop All</button>
+                <button id="record-toggle" class="neon-button record-btn">Record</button>
+                <button id="download-recording" class="neon-button" disabled>Download</button>
+            </div>
+        </header>
+
+        <div class="visualizer-container">
+            <canvas id="visualizer"></canvas>
+        </div>
+
+        <div class="mode-selector">
+            <button class="mode-btn active" data-mode="all">All Pads</button>
+            <button class="mode-btn" data-mode="beats">Beats</button>
+            <button class="mode-btn" data-mode="melody">Melody</button>
+            <button class="mode-btn" data-mode="fx">FX</button>
+        </div>
+
+        <div class="pad-container"></div>
+
+        <div class="session-controls">
+            <button id="save-session" class="neon-button">Save Session</button>
+            <select id="load-session">
+                <option value="">Load Session</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Templates for dynamic content -->
+    <template id="pad-template">
+        <div class="pad" data-category="">
+            <div class="pad-content">
+                <span class="loader"></span>
+                <span class="beat-name"></span>
+            </div>
+            <div class="pad-controls">
+                <div class="control-group">
+                    <label>Vol</label>
+                    <input type="range" class="volume-control" min="0" max="100" value="80">
+                </div>
+                <div class="control-group">
+                    <label>Delay</label>
+                    <input type="range" class="delay-control" min="0" max="100" value="0">
+                </div>
+                <div class="control-group">
+                    <label>Filter</label>
+                    <input type="range" class="filter-control" min="0" max="100" value="100">
+                </div>
+                <button class="loop-btn">Loop</button>
+            </div>
+        </div>
+    </template>
 
     <!-- Load the audio data -->
     <script src="{{ url_for('static', filename='js/audioData.js') }}"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const padContainer = document.querySelector(".pad-container");
-
-            audioData.pads.forEach(padData => {
-                const pad = document.createElement("div");
-                pad.classList.add("pad");
-                pad.setAttribute("data-sound", padData.sound);
-
-                pad.innerHTML = `
-                    <span class="loader"></span>
-                    <span class="beat-name">${padData.name}</span>
-                `;
-
-                pad.addEventListener("click", () => {
-                    let audio = new Audio(padData.sound);
-                    audio.play();
-                });
-
-                padContainer.appendChild(pad);
-            });
-        });
-    </script>
+    <script src="{{ url_for('static', filename='js/groovepad.js') }}"></script>
 </body>
 </html>
