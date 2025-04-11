@@ -22,6 +22,7 @@
                 <button id="stop-all" class="neon-button">Stop All</button>
                 <button id="record-toggle" class="neon-button record-btn">Record</button>
                 <button id="download-recording" class="neon-button" disabled>Download</button>
+                <button id="add-custom-beat" class="neon-button">Add Custom Beat</button>
             </div>
         </header>
 
@@ -70,6 +71,30 @@
             </div>
         </div>
     </template>
+
+    <div id="custom-beat-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Add Custom Beat</h2>
+            <div class="form-group">
+                <label for="beat-name">Beat Name:</label>
+                <input type="text" id="beat-name" placeholder="Enter a name for your beat">
+            </div>
+            <div class="form-group">
+                <label for="beat-category">Category:</label>
+                <select id="beat-category">
+                    <option value="beats">Beats</option>
+                    <option value="melody">Melody</option>
+                    <option value="fx">FX</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="beat-file">Audio File:</label>
+                <input type="file" id="beat-file" accept="audio/*">
+            </div>
+            <button id="upload-beat" class="neon-button">Add Beat</button>
+        </div>
+    </div>
 
     <!-- Load the audio data -->
     <script src="{{ url_for('static', filename='js/audioData.js') }}"></script>
